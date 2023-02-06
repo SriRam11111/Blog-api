@@ -7,11 +7,13 @@ const app =express();
 
 app.use(express.json())
 
+const PORT = process.env.PORT || 4000;
+
 app.use("/api/user",userRouter)
 app.use("/api/blog",blogRouter)
 
 mongoose.connect("mongodb+srv://vijayaram:vijayaram@cluster0.macbiih.mongodb.net/Blog?retryWrites=true&w=majority")
-.then(app.listen(3000,()=>{console.log("server started")}) )
+.then(app.listen(PORT, () => console.log(`Server running on port ${PORT}`)))
 .then(()=>  console.log("mongodb connected"))
 .catch((err)=>console.log(err))
 
